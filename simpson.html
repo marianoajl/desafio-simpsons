@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Asistencia al viajero ASSIST CARD Argentina. Viajá tranquilo a Europa, USA, Caribe, Sudamérica y todo el mundo. Contratá ahora en la web.">
+    <meta name="HandheldFriendly" content="true">
+    <meta property="og:title" content="Asistencia al Viajero - M&#225;s que un seguro de viaje ASSIST CARD. " />
+    <meta property="og:description" content="Asistencia al viajero ASSIST CARD Argentina. Viaj&#225; tranquilo a Europa, USA, Caribe, Sudam&#233;rica y todo el mundo. Contrat&#225; ahora en la web." />
+    <meta property="og:url" content="https://www.assistcard.com/ar" />
+    <meta name="robots" content="index,follow">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="appleid-signin-client-id" content="[CLIENT_ID]">
+    <meta name="appleid-signin-scope" content="[SCOPES]">
+    <meta name="appleid-signin-redirect-uri" content="[REDIRECT_URI]">
+    <meta name="appleid-signin-state" content="[STATE]">
+    <link rel="stylesheet" type="text/css" media="screen" href="content/css/vendors/bootstrap-5.0.2/bootstrap.css">
+    <title>The Simpsons | Proyecto</title>
+    <link rel="icon" type="image/x-icon" href="content/img/icons/ac-favicon-min.ico">
+    <link rel="stylesheet" type="text/css" href="content/css/simpson.css">
+</head>
+
+<body>
+    <section id="loader__body" class="loader">
+        <figure class="figure">
+            <img class="gif" src="content/img/gifs/homer-loader.gif" alt="loader">
+            <figcaption class="loading">loading</figcaption>
+        </figure>
+    </section>
+    <header id="simpson__header" class="simpson__header">
+        <img class="simpson__header__logo" src="content/img/simpson-title.svg" alt="the-Simpsons-logo">
+    </header>
+    <section id="main_simpson" class="main_simpson">
+        <button type="" role="button" id="reset" class="btn-reset btn">reset</button>
+        <!-- Por medio del <script> simpson.js acá se generan las cards para cada uno de los personajes -->
+    </section>
+    <section id="modal__body" class="d-none modal__body">
+        <div class="modal__card">
+            <p id="modal__text" class="modal__text"></p>
+            <div class="modal__buttons">
+                <button type="" role="button" id="no" class="modal__btn--no btn">no</button>
+                <button type="" role="button" id="yes" class="modal__btn--yes btn">si</button>
+            </div>
+        </div>
+    </section>
+    <script src="content/js/vendors/bootstrap-5.0.2/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="content/js/simpson.js"></script>
+</body>
+
+</html>
