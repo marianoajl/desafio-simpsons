@@ -5,6 +5,10 @@ const xhr = new XMLHttpRequest(),
 
 var url = "https://test-simpsons-assistcard.herokuapp.com/characters?id=";
 
+// variable que guarda un array con todos los objetos de cada personaje
+let imgs = [];
+
+
 // create and send the request
 xhr.open(
     "GET", 
@@ -39,7 +43,6 @@ xhr.onload = () => {
         name.classList.add("name");
         name.textContent = character.name;
         listItem.setAttribute("id", character.id);
-        //console.log(character.id);
 
         // const lastName = document.createElement('H6');
         // lastName.classList.add("lastname");
@@ -61,34 +64,57 @@ xhr.onload = () => {
         listItem.appendChild(article);
 
         main.appendChild(listItem);
+
+        // Acá está la cantidad de personajes
+        console.log(character.id);
+
+        // Intenta levantar la data de cada personaje
+        xhr.open(
+            "GET", 
+            url + character.id
+            );
+        xhr.onload = () => {
+            const imgsData = xhr.response;
+            // imgs.push(imgsData);
+            let allCharacters = JSON.parse(imgsData);
+
+            console.log(typeof(imgsData));
+            console.log(imgsData);
+            console.log(allCharacters);
+            imgs.push(allCharacters.data);
+            console.log(imgs);
+        }
+        xhr.send();
     }
 };
 
 
-// const noButton = document.getElementById("no");
-// noButton.addEventListener(click, () => {
-//     console.log("hizo click en el botón NO");
-//     // modalBody.classList.add(d-none);
-// });
+// Toco botón NO en el modal de eliminar personaje
+const modalBody = document.getElementById("modal__body");
+const noButton = document.getElementById("no");
+noButton.addEventListener("click", () => {
+    console.log("hizo click en el botón NO");
+    modalBody.classList.add("d-none");
+});
 
 // Eliminar character
-document.addEventListener("mouseup", (e) => {
+document.addEventListener("click", (e) => {
     console.log(e);
     const id = e.target.getAttribute("id");
     const idNum = parseInt(id);
-    const getName = e.target.getAttribute("name")
-    const modalBody = document.getElementById("modal__body");
-    const modalText = document.getElementById("modal__text");
-    const yesButton = document.getElementById("yes");
+    console.log(typeof(idNum));
+    if (typeof idNum === "number" && id !== "null" && id !== "NaN") {
+        const getName = e.target.getAttribute("name");
+        const modalText = document.getElementById("modal__text");
+        const yesButton = document.getElementById("yes");
 
-    console.log(idNum);
+        // console.log(typeof idNum);
 
-    // Diferencia para no eliminar el <button> RESET y el <div> que contiene todo el contenido
-
-    // if (id !== "reset" && id !== "main_simpson" && id !== "simpson__header") {
-    if (typeof idNum == "number" && id !== null) {
+        // Diferencia para no eliminar el <button> RESET y el <div> que contiene todo el contenido
+        // && idNum !== null && idNum !== NaN
+        console.log("Elegiste un número");
+        modalBody.classList.remove("d-none"); // Muestra el modal para eliminar el personaje
         modalText.textContent = `¿Desea eliminar a ${getName}?`;
-        modalBody.classList.remove("d-none"); // Muestra el modal para eliminar personaje
         yesButton.setAttribute("id", idNum);
     } else {
         console.log("No eligió un número");
@@ -114,7 +140,7 @@ const reset = document.getElementById("reset");
 
 reset.addEventListener("click", (e) => {
     console.log("Usted hizo click en RESET");
-    
+
     xhr.open(
         "POST",
         "https://test-simpsons-assistcard.herokuapp.com/resetcharacterslist"
